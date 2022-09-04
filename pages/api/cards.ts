@@ -9,7 +9,7 @@ type Card = {
     front: string,
     back: string,
     known: Boolean,
-    hint: string|null
+    hint: string | null
 }
 
 const createCard = async (
@@ -49,18 +49,22 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<any>
 ) {
-    if (req.method === "POST") {
-        return await createCard(req, res);
-    }
+    try {
+        if (req.method === "POST") {
+            return await createCard(req, res);
+        }
 
-    if (req.method === "GET") {
-        return await getAllCards(req, res);
-    }
+        if (req.method === "GET") {
+            return await getAllCards(req, res);
+        }
 
-    if (req.method === "DELETE") {
-        return await deleteCard(req, res);
-    }
+        if (req.method === "DELETE") {
+            return await deleteCard(req, res);
+        }
 
-    //Not implemented
-    return res.status(501).json({message: `${req.method} is not implemented`});
+        //Not implemented
+        return res.status(501).json({message: `${req.method} is not implemented`});
+    } catch (e) {
+        return res.status(500).json(e);
+    }
 }
