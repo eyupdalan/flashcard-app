@@ -36,7 +36,7 @@ const getAllCards = async (
         const cards = await prisma.card.findMany();
         return res.status(200).json(cards);
     } catch (e) {
-        throw e;
+        throw  new Error(`get error --> ${JSON.stringify(e)}`);
     }
 }
 
