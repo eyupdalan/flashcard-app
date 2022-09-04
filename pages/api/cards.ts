@@ -16,33 +16,45 @@ const createCard = async (
     req: NextApiRequest,
     res: NextApiResponse<Card>
 ) => {
-    const data = req.body;
-    console.log(data);
-    const card = await prisma.card.create({
-        data
-    });
-    return res.status(200).json(card);
+    try {
+        const data = req.body;
+        console.log(data);
+        const card = await prisma.card.create({
+            data
+        });
+        return res.status(200).json(card);
+    } catch (e) {
+        throw e;
+    }
 }
 
 const getAllCards = async (
     req: NextApiRequest,
     res: NextApiResponse<Card[]>
 ) => {
-    const cards = await prisma.card.findMany();
-    return res.status(200).json(cards);
+    try {
+        const cards = await prisma.card.findMany();
+        return res.status(200).json(cards);
+    } catch (e) {
+        throw e;
+    }
 }
 
 const deleteCard = async (
     req: NextApiRequest,
     res: NextApiResponse<Card>
 ) => {
-    const {id} = req.query;
-    const deletedCard = await prisma.card.delete({
-        where: {
-            id: Number(id)
-        }
-    })
-    return res.status(200).json(deletedCard);
+    try {
+        const {id} = req.query;
+        const deletedCard = await prisma.card.delete({
+            where: {
+                id: Number(id)
+            }
+        })
+        return res.status(200).json(deletedCard);
+    } catch (e) {
+        throw e;
+    }
 }
 
 export default async function handler(
