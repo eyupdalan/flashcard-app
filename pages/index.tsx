@@ -63,7 +63,7 @@ const Home: NextPage = () => {
             },
             method: "POST",
             body: JSON.stringify(item)
-        })
+        });
     }
 
     const onClickAdd = () => setShowAddModal(!showAddModal);
