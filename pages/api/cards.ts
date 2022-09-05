@@ -38,6 +38,7 @@ const getAllCards = async (
     res: NextApiResponse<Card[]>
 ) => {
     try {
+        await prisma.$connect();
         const cards = await prisma.card.findMany();
         await prisma.$disconnect();
         return res.status(200).json(cards);
