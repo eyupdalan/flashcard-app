@@ -38,3 +38,5 @@ next-env.d.ts
 .idea
 .next
 .env
+# Local Netlify folder
+.netlify

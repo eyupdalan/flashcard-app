@@ -23,8 +23,13 @@ const createCard = async (
             data
         });
         return res.status(200).json(card);
-    } catch (e) {
-        throw e;
+    } catch (error) {
+        console.error(error)
+        return {
+            statusCode: 500,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(error)
+        }
     }
 }
 
@@ -35,8 +40,13 @@ const getAllCards = async (
     try {
         const cards = await prisma.card.findMany();
         return res.status(200).json(cards);
-    } catch (e) {
-        throw  new Error(`get error --> ${JSON.stringify(e)}`);
+    } catch (error) {
+        console.error(error)
+        return {
+            statusCode: 500,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(error)
+        }
     }
 }
 
@@ -52,8 +62,13 @@ const deleteCard = async (
             }
         })
         return res.status(200).json(deletedCard);
-    } catch (e) {
-        throw e;
+    } catch (error) {
+        console.error(error)
+        return {
+            statusCode: 500,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(error)
+        }
     }
 }
 
