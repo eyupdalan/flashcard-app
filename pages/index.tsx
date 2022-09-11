@@ -22,7 +22,7 @@ const fetcher = (...args) => fetch(...args).then(res => res.json());
 
 const dialogContentProps = {
     type: DialogType.normal,
-    title: 'Yeni kart ekle'
+    title: "Yeni kart ekle"
 };
 
 const Home: NextPage = () => {
