@@ -6,28 +6,26 @@ import {
     ContextualMenu,
     DefaultButton,
     DetailsList,
-    Dialog,
     DialogFooter,
     DialogType,
     IColumn,
     ICommandBarItemProps,
+    Panel,
+    PanelType,
     PrimaryButton,
     TextField
 } from "@fluentui/react";
+import {useBoolean} from "@fluentui/react-hooks";
 import useSWR, {useSWRConfig} from 'swr';
 import {useMemo, useState} from "react";
 
 // @ts-ignore
 const fetcher = (...args) => fetch(...args).then(res => res.json());
 
-const dialogContentProps = {
-    type: DialogType.normal,
-    title: "Yeni kart ekle"
-};
-
 const Home: NextPage = () => {
     const {mutate} = useSWRConfig()
 
+    const [isOpen, {setTrue: openPanel, setFalse: dismissPanel}] = useBoolean(false);
     const [showAddModal, setShowAddModal] = useState<boolean>(false);
 
     const [front, setFront] = useState<string | undefined>(undefined);
@@ -35,18 +33,6 @@ const Home: NextPage = () => {
     const [hint, setHint] = useState<string | undefined>(undefined);
 
     const {data, error} = useSWR('/api/cards', fetcher)
-
-    const modalProps = useMemo(
-        () => ({
-            isBlocking: true,
-            dragOptions: {
-                moveMenuItemText: 'Move',
-                closeMenuItemText: 'Close',
-                menu: ContextualMenu,
-            }
-        }),
-        [],
-    )
 
     const addCard = async () => {
         const item = {
@@ -117,7 +103,7 @@ const Home: NextPage = () => {
             key: 'newItem',
             text: 'Ekle',
             iconProps: {iconName: 'Add'},
-            onClick: onClickAdd
+            onClick: openPanel
         }
     ]
 
@@ -142,12 +128,11 @@ const Home: NextPage = () => {
                 <DetailsList items={data} columns={columns}/>
             </main>
 
-            <Dialog
-                hidden={!showAddModal}
-                onDismiss={onClickAdd}
-                dialogContentProps={dialogContentProps}
-                modalProps={modalProps}
-                minWidth={600}
+            <Panel
+                isLightDismiss
+                isOpen={isOpen}
+                onDismiss={dismissPanel}
+                type={PanelType.medium}
             >
                 <TextField
                     label="Kartın Ön Yüzü"
@@ -171,7 +156,7 @@ const Home: NextPage = () => {
                     <DefaultButton onClick={onClickAdd} text="İptal"/>
                     <PrimaryButton onClick={onClickAddCard} text="Kaydet"/>
                 </DialogFooter>
-            </Dialog>
+            </Panel>
 
 
             <footer className={styles.footer}>
