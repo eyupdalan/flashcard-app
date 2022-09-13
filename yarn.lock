@@ -25,9 +25,9 @@
     regenerator-runtime "^0.13.4"
 
 "@eslint/eslintrc@^1.3.0":
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/@eslint/eslintrc/-/eslintrc-1.3.1.tgz#de0807bfeffc37b964a7d0400e0c348ce5a2543d"
-  integrity sha512-OhSY22oQQdw3zgPOOwdoj01l/Dzl1Z+xyUP33tkSN+aqyEhymJCcPHyXt+ylW8FSe0TfRC2VG+ROQOapD0aZSQ==
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/@eslint/eslintrc/-/eslintrc-1.3.2.tgz#58b69582f3b7271d8fa67fe5251767a5b38ea356"
+  integrity sha512-AXYd23w1S/bv3fTs3Lz0vjiYemS08jWkI3hYyS9I1ry+0f+Yjs1wm+sU0BS8qDOPrBIkp4qHYC16I8uVtpLajQ==
   dependencies:
     ajv "^6.12.4"
     debug "^4.3.2"
@@ -128,10 +128,10 @@
     "@fluentui/set-version" "^8.2.2"
     tslib "^2.1.0"
 
-"@fluentui/react@^8.94.0":
-  version "8.94.3"
-  resolved "https://registry.yarnpkg.com/@fluentui/react/-/react-8.94.3.tgz#3620e08b69dff2ee6f6a49c608f809d2ef5a12d7"
-  integrity sha512-kj6KCv4PM4ED9yeqfraz8iOu2sLokQ2p8rOFvFNpWvd89WlN7yDxW2RrG4eAaNDGS8WmTcuL1Xlwcqv8fGUTFA==
+"@fluentui/react@^8.94.4":
+  version "8.94.4"
+  resolved "https://registry.yarnpkg.com/@fluentui/react/-/react-8.94.4.tgz#12b35f5b4b4cfd8815d84262a5081f63c214abaf"
+  integrity sha512-zT9TscfVqunSbPRXuCOEwZ/MQK3n0baO2xs+TSTJEEh0POlov5BQb5CYLu/YxdVYkWD2EKeMH+O7Kcy4WmWnxg==
   dependencies:
     "@fluentui/date-time-utilities" "^8.5.2"
     "@fluentui/font-icons-mdl2" "^8.4.13"
@@ -348,10 +348,10 @@
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==
 
-"@types/node@18.7.16":
-  version "18.7.16"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.7.16.tgz#0eb3cce1e37c79619943d2fd903919fc30850601"
-  integrity sha512-EQHhixfu+mkqHMZl1R2Ovuvn47PUw18azMJOTwSZr9/fhzHNGXAJ0ma0dayRVchprpCj0Kc1K1xKoWaATWF1qg==
+"@types/node@18.7.17":
+  version "18.7.17"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.7.17.tgz#52438111ea98f77475470fc62d79b9eb96bb2c92"
+  integrity sha512-0UyfUnt02zIuqp7yC8RYtDkp/vo8bFaQ13KkSEvUAohPOAlnVNbj5Fi3fgPSuwzakS+EvvnnZ4x9y7i6ASaSPQ==
 
 "@types/prop-types@*":
   version "15.7.5"
