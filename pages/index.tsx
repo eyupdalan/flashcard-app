@@ -3,11 +3,9 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import {
     CommandBar,
-    ContextualMenu,
     DefaultButton,
     DetailsList,
     DialogFooter,
-    DialogType,
     IColumn,
     ICommandBarItemProps,
     Panel,
@@ -17,7 +15,8 @@ import {
 } from "@fluentui/react";
 import {useBoolean} from "@fluentui/react-hooks";
 import useSWR, {useSWRConfig} from 'swr';
-import {useMemo, useState} from "react";
+import {useState} from "react";
+import LoginButton from "../components/loginButton";
 
 // @ts-ignore
 const fetcher = (...args) => fetch(...args).then(res => res.json());
@@ -104,7 +103,14 @@ const Home: NextPage = () => {
             text: 'Ekle',
             iconProps: {iconName: 'Add'},
             onClick: openPanel
-        }
+        },
+    ];
+
+    const farCommandBarItems: ICommandBarItemProps[] = [
+        {
+            key: "login",
+            commandBarButtonAs: LoginButton
+        },
     ]
 
     if (error) {
@@ -124,7 +130,7 @@ const Home: NextPage = () => {
             </Head>
 
             <main className={styles.main}>
-                <CommandBar items={[]} farItems={commandBarItems} style={{width: "100%"}}/>
+                <CommandBar items={commandBarItems} farItems={farCommandBarItems} style={{width: "100%"}}/>
                 <DetailsList items={data} columns={columns}/>
             </main>
 

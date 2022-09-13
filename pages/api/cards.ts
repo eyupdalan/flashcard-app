@@ -1,4 +1,6 @@
 import type {NextApiRequest, NextApiResponse} from 'next'
+import { unstable_getServerSession } from "next-auth/next";
+import { authOptions } from "./auth/[...nextauth]"
 import { prisma } from '../../db';
 
 type Card = {
@@ -16,7 +18,6 @@ const createCard = async (
 ) => {
     try {
         const data = req.body;
-        console.log(data);
         const card = await prisma.card.create({
             data
         });
@@ -77,6 +78,12 @@ export default async function handler(
     res: NextApiResponse<any>
 ) {
     try {
+        const session = await unstable_getServerSession(req, res, authOptions)
+
+        if (!session){
+            return res.status(401).json({message: `Unauthorized`});
+        }
+
         if (req.method === "POST") {
             return await createCard(req, res);
         }
