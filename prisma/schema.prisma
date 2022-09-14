@@ -2,21 +2,50 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
   referentialIntegrity = "prisma"
 }
 
-model Card {
-  id        Int     @id @default(autoincrement())
-  type      Int
-  front     String
-  back      String
-  known     Boolean @default(false)
-  hint      String?
+model Cards {
+  id         Int       @id @default(autoincrement())
+  deckId     Int
+  type       Int
+  front      String
+  back       String
+  known      Boolean   @default(false)
+  hint       String?
+  status     String    @default("A")
+  createDate DateTime  @default(now())
+  updateDate DateTime?
+  Deck       Decks     @relation(fields: [deckId], references: [id])
+}
+
+model Users {
+  id            Int       @id @default(autoincrement())
+  name          String
+  email         String
+  loginProvider String
+  imageUrl      String?
+  createDate    DateTime  @default(now())
+  updateDate    DateTime?
+  Decks         Decks[]
+
+  @@unique([email], name: "email_uunique_constraint")
+}
+
+model Decks {
+  id         Int       @id @default(autoincrement())
+  name       String
+  ownerId    Int
+  private    Boolean   @default(false)
+  User       Users     @relation(fields: [ownerId], references: [id])
+  createDate DateTime  @default(now())
+  updateDate DateTime?
+  Cards      Cards[]
 }

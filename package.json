@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "update_db": "npx prisma format && npx prisma update db"
   },
   "dependencies": {
     "@fluentui/react": "^8.94.4",

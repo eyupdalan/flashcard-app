@@ -1,6 +1,5 @@
 import type {NextApiRequest, NextApiResponse} from 'next'
-import { unstable_getServerSession } from "next-auth/next";
-import { authOptions } from "./auth/[...nextauth]"
+import { getSession } from "next-auth/react";
 import { prisma } from '../../db';
 
 type Card = {
@@ -18,7 +17,7 @@ const createCard = async (
 ) => {
     try {
         const data = req.body;
-        const card = await prisma.card.create({
+        const card = await prisma.cards.create({
             data
         });
         return res.status(200).json(card);
@@ -36,19 +35,20 @@ const getAllCards = async (
     req: NextApiRequest,
     res: NextApiResponse<Card[]>
 ) => {
-    try {
-        await prisma.$connect();
-        const cards = await prisma.card.findMany();
-        await prisma.$disconnect();
-        return res.status(200).json(cards);
-    } catch (error) {
-        console.error(error)
-        return {
-            statusCode: 500,
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(error)
-        }
-    }
+    return res.status(200).json([]);
+    // try {
+    //     await prisma.$connect();
+    //     const cards = await prisma.cards.findMany();
+    //     await prisma.$disconnect();
+    //     return res.status(200).json(cards);
+    // } catch (error) {
+    //     console.error(error)
+    //     return {
+    //         statusCode: 500,
+    //         headers: { 'Content-Type': 'application/json' },
+    //         body: JSON.stringify(error)
+    //     }
+    // }
 }
 
 const deleteCard = async (
@@ -57,7 +57,7 @@ const deleteCard = async (
 ) => {
     try {
         const {id} = req.query;
-        const deletedCard = await prisma.card.delete({
+        const deletedCard = await prisma.cards.delete({
             where: {
                 id: Number(id)
             }
@@ -78,10 +78,10 @@ export default async function handler(
     res: NextApiResponse<any>
 ) {
     try {
-        const session = await unstable_getServerSession(req, res, authOptions)
+        const session = await getSession({req})
 
         if (!session){
-            return res.status(401).json({message: `Unauthorized`});
+            return res.status(401).json({message: `Unauthorized --> ${session}`});
         }
 
         if (req.method === "POST") {
