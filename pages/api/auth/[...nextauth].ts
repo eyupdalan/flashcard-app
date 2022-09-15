@@ -20,6 +20,9 @@ export const authOptions: NextAuthOptions = {
     session: {
         strategy: "jwt"
     },
+    pages: {
+        signIn: '/auth/signin',
+    },
     callbacks:{
         signIn: async (params: {user: User, account: Account, profile: Profile & Record<string, unknown>, email: {verificationRequest?: boolean | undefined}, credentials?: Record<string, CredentialInput> | undefined}): Promise<any> => {
             if(await isUserExists(params.user.email!)){
