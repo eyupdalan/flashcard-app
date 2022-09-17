@@ -1,9 +1,8 @@
 import type {NextPage} from 'next';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import {PlayingCardsRegular} from "@fluentui/react-icons";
-import {Button} from "@fluentui/react-button";
-import {signIn} from "next-auth/react"
+import {Button} from "@fluentui/react-northstar";
+import {signIn} from "next-auth/react";
 
 const Home: NextPage = () => {
     const onClickSignIn = () => signIn();
@@ -15,11 +14,9 @@ const Home: NextPage = () => {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <main className={styles.main}>
-                <div className={styles.logo}>
-                    <PlayingCardsRegular style={{fontSize: 100, color: "#fe552e"}}/>
-                    <div className={styles.title}>Flashcard App</div>
-                    <Button as={"a"} onClick={onClickSignIn}>Login</Button>
-                </div>
+                <div className={styles.logo}>{"><"}</div>
+                <div className={styles.title}>Flashcard App</div>
+                <Button onClick={onClickSignIn}>Login</Button>
             </main>
             <footer className={styles.footer}>
                 <div>

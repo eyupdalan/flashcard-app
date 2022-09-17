@@ -29,7 +29,8 @@
 }
 
 .logo {
-    text-align: center;
+    font-family: 'Nabla', cursive;
+    font-size: 10rem;
 }
 
 @media (max-width: 600px) {
