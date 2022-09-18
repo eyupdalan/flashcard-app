@@ -2,10 +2,23 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { Button } from "@chakra-ui/react";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Logo from "../components/logo";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const Home: NextPage = () => {
+    const { data: session } = useSession();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (session) {
+            const id = "test";
+            router.push(`/user/${id}`);
+        }
+    }, [router, session]);
+
+
     const onClickSignIn = () => signIn();
 
     return (
