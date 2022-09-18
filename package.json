@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "update_db": "npx prisma format && npx prisma update db"
+    "update_db": "npx prisma format && npx prisma update db",
+    "fix": "eslint --fix ./pages"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.3.2",

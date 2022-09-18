@@ -1,12 +1,12 @@
 import styles from "../../styles/SignIn.module.css";
-import type {ClientSafeProvider, LiteralUnion} from "next-auth/react"
-import {getProviders, signIn} from "next-auth/react"
-import {BuiltInProviderType} from "next-auth/providers";
-import {Button} from '@chakra-ui/react'
+import type { ClientSafeProvider, LiteralUnion } from "next-auth/react";
+import { getProviders, signIn } from "next-auth/react";
+import { BuiltInProviderType } from "next-auth/providers";
+import { Button } from "@chakra-ui/react";
 import Logo from "../../components/logo";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faGithub, faGoogle} from "@fortawesome/free-brands-svg-icons";
-import {ReactElement} from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub, faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { ReactElement } from "react";
 
 type ProviderIcons = {
     GitHub: ReactElement,
@@ -19,7 +19,7 @@ const ICONS: ProviderIcons = {
     Google: <FontAwesomeIcon icon={faGoogle}/>,
 };
 
-export default function SignIn({providers}: { providers: ClientSafeProvider }) {
+export default function SignIn({ providers }: { providers: ClientSafeProvider }) {
     if (!providers) {
         return <div>{JSON.stringify(providers)}</div>;
     }
@@ -41,12 +41,12 @@ export default function SignIn({providers}: { providers: ClientSafeProvider }) {
                 </div>
             ))}
         </div>
-    )
+    );
 }
 
 export async function getServerSideProps() {
     const providers: Record<LiteralUnion<BuiltInProviderType>, ClientSafeProvider> | null = await getProviders();
     return {
-        props: {providers},
-    }
+        props: { providers },
+    };
 }

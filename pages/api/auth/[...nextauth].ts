@@ -1,9 +1,9 @@
-import NextAuth, {Account, NextAuthOptions, Profile, User} from "next-auth"
+import NextAuth, { Account, NextAuthOptions, Profile, User } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
-import GoogleProvider from "next-auth/providers/google"
-import {CredentialInput} from "next-auth/providers";
-import {insertUser, isUserExists} from "../../../models/users";
-import type {User as MyUser} from "../../../models/users";
+import GoogleProvider from "next-auth/providers/google";
+import { CredentialInput } from "next-auth/providers";
+import { insertUser, isUserExists } from "../../../models/users";
+import type { User as MyUser } from "../../../models/users";
 
 const githubClientId = process.env.GITHUB_ID ? process.env.GITHUB_ID : "";
 const githubClientSecret = process.env.GITHUB_SECRET ? process.env.GITHUB_SECRET : "";
@@ -29,7 +29,7 @@ export const authOptions: NextAuthOptions = {
         strategy: "jwt"
     },
     pages: {
-        signIn: '/auth/signin',
+        signIn: "/auth/signin",
     },
     callbacks:{
         signIn: async (params: {user: User, account: Account, profile: Profile & Record<string, unknown>, email: {verificationRequest?: boolean | undefined}, credentials?: Record<string, CredentialInput> | undefined}): Promise<any> => {
@@ -48,6 +48,6 @@ export const authOptions: NextAuthOptions = {
             return !!insertedUser;
         },
     },
-}
+};
 
-export default NextAuth(authOptions)
+export default NextAuth(authOptions);

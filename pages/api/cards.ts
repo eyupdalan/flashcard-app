@@ -1,6 +1,6 @@
-import type {NextApiRequest, NextApiResponse} from 'next'
+import type { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
-import { prisma } from '../../db';
+import { prisma } from "../../db";
 
 type Card = {
     id: Number,
@@ -22,14 +22,14 @@ const createCard = async (
         });
         return res.status(200).json(card);
     } catch (error) {
-        console.error(error)
+        console.error(error);
         return {
             statusCode: 500,
-            headers: { 'Content-Type': 'application/json' },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(error)
-        }
+        };
     }
-}
+};
 
 const getAllCards = async (
     req: NextApiRequest,
@@ -49,39 +49,39 @@ const getAllCards = async (
     //         body: JSON.stringify(error)
     //     }
     // }
-}
+};
 
 const deleteCard = async (
     req: NextApiRequest,
     res: NextApiResponse<Card>
 ) => {
     try {
-        const {id} = req.query;
+        const { id } = req.query;
         const deletedCard = await prisma.cards.delete({
             where: {
                 id: Number(id)
             }
-        })
+        });
         return res.status(200).json(deletedCard);
     } catch (error) {
-        console.error(error)
+        console.error(error);
         return {
             statusCode: 500,
-            headers: { 'Content-Type': 'application/json' },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(error)
-        }
+        };
     }
-}
+};
 
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<any>
 ) {
     try {
-        const session = await getSession({req})
+        const session = await getSession({ req });
 
         if (!session){
-            return res.status(401).json({message: `Unauthorized --> ${session}`});
+            return res.status(401).json({ message: `Unauthorized --> ${session}` });
         }
 
         if (req.method === "POST") {
@@ -97,7 +97,7 @@ export default async function handler(
         }
 
         //Not implemented
-        return res.status(501).json({message: `${req.method} is not implemented`});
+        return res.status(501).json({ message: `${req.method} is not implemented` });
     } catch (e) {
         return res.status(500).json(e);
     }

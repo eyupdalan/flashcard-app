@@ -1,8 +1,8 @@
-import type {NextPage} from 'next';
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
-import { Button } from '@chakra-ui/react'
-import {signIn} from "next-auth/react";
+import type { NextPage } from "next";
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import { Button } from "@chakra-ui/react";
+import { signIn } from "next-auth/react";
 import Logo from "../components/logo";
 
 const Home: NextPage = () => {
@@ -29,7 +29,7 @@ const Home: NextPage = () => {
                 </div>
             </footer>
         </div>
-    )
-}
+    );
+};
 
-export default Home
+export default Home;
