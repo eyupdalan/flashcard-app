@@ -1,5 +1,6 @@
 import NextAuth, {Account, NextAuthOptions, Profile, User} from "next-auth"
 import GithubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google"
 import {CredentialInput} from "next-auth/providers";
 import {insertUser, isUserExists} from "../../../models/users";
 import type {User as MyUser} from "../../../models/users";
@@ -7,11 +8,18 @@ import type {User as MyUser} from "../../../models/users";
 const githubClientId = process.env.GITHUB_ID ? process.env.GITHUB_ID : "";
 const githubClientSecret = process.env.GITHUB_SECRET ? process.env.GITHUB_SECRET : "";
 
+const googleClientId = process.env.GOOGLE_ID ? process.env.GOOGLE_ID : "";
+const googleClientSecret = process.env.GOOGLE_SECRET ? process.env.GOOGLE_SECRET : "";
+
 export const authOptions: NextAuthOptions = {
     providers: [
         GithubProvider({
             clientId: githubClientId,
             clientSecret: githubClientSecret
+        }),
+        GoogleProvider({
+            clientId: googleClientId,
+            clientSecret: googleClientSecret
         })
     ],
     jwt: {

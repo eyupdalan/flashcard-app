@@ -1,6 +1,6 @@
 import '../styles/globals.css'
 import {SessionProvider} from "next-auth/react"
-import {Provider as FluentProvider, teamsTheme} from '@fluentui/react-northstar';
+import { ChakraProvider } from '@chakra-ui/react'
 import {AppProps} from "next/app";
 import {Session} from "next-auth";
 
@@ -15,11 +15,11 @@ function MyApp({
                    pageProps,
                }: EnhancedAppProps) {
     return (
-        <FluentProvider theme={teamsTheme}>
+        <ChakraProvider>
             <SessionProvider session={pageProps.session}>
                 <Component {...pageProps} />
             </SessionProvider>
-        </FluentProvider>
+        </ChakraProvider>
     )
 }
 

@@ -10,12 +10,16 @@
     "update_db": "npx prisma format && npx prisma update db"
   },
   "dependencies": {
-    "@fluentui/react-northstar": "^0.64.0",
+    "@chakra-ui/react": "^2.3.2",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
+    "@fortawesome/free-brands-svg-icons": "^6.2.0",
     "@fortawesome/free-regular-svg-icons": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@prisma/client": "^4.3.1",
+    "framer-motion": "^6",
     "next": "12.3.0",
     "next-auth": "^4.10.3",
     "react": "18.2.0",
