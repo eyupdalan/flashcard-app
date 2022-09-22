@@ -1,13 +1,12 @@
 import styles from "../../styles/SignIn.module.css";
 import type { ClientSafeProvider, LiteralUnion } from "next-auth/react";
-import { getProviders, signIn, useSession } from "next-auth/react";
+import { getProviders, signIn } from "next-auth/react";
 import { BuiltInProviderType } from "next-auth/providers";
 import { Button } from "@chakra-ui/react";
 import Logo from "../../components/logo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faGoogle } from "@fortawesome/free-brands-svg-icons";
-import { ReactElement, useEffect } from "react";
-import { useRouter } from "next/router";
+import { ReactElement } from "react";
 
 type ProviderIcons = {
     GitHub: ReactElement,
@@ -21,23 +20,12 @@ const ICONS: ProviderIcons = {
 };
 
 export default function SignIn({ providers }: { providers: ClientSafeProvider }) {
-    const { data: session } = useSession();
-    const router = useRouter();
-
-    useEffect(() => {
-        if (session) {
-            const id = "test";
-            router.push(`/user/${id}`);
-        }
-    }, [router, session]);
-
-
     if (!providers) {
         return <div>{JSON.stringify(providers)}</div>;
     }
 
     const onClickSignInCreator = (providerId: string) => async () => {
-        await signIn(providerId);
+        await signIn(providerId, { callbackUrl: "/user" });
     };
 
     return (
