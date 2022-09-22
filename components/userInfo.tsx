@@ -9,7 +9,7 @@ export default function UserInfo() {
     };
 
     return (
-        <Container maxW={"container.lg"}>
+        <div>
             <Flex>
                 <Flex>
                     <Center>
@@ -25,7 +25,6 @@ export default function UserInfo() {
                 </Center>
             </Flex>
             <Divider/>
-            {JSON.stringify(session)}
-        </Container>
+        </div>
     );
 }

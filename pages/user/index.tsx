@@ -3,8 +3,8 @@ import UserInfo from "../../components/userInfo";
 
 export default function User(){
     return (
-        <div style={{ width: "100%", backgroundColor: "orange" }}>
+        <Container maxW={"container.lg"}>
             <UserInfo />
-        </div>
+        </Container>
     );
 }
