@@ -36,7 +36,7 @@ model Users {
   updateDate    DateTime?
   Decks         Decks[]
 
-  @@unique([email], name: "email_uunique_constraint")
+  @@unique([email], name: "email_unique_constraint")
 }
 
 model Decks {

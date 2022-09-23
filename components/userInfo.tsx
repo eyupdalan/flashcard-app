@@ -21,7 +21,7 @@ export default function UserInfo() {
                 </Flex>
                 <Spacer />
                 <Center>
-                    <Button onClick={onClickSignOut}>Sign Out</Button>
+                    <Button size={"sm"} onClick={onClickSignOut}>Sign Out</Button>
                 </Center>
             </Flex>
             <Divider/>
