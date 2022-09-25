@@ -40,3 +40,7 @@ next-env.d.ts
 .env
 # Local Netlify folder
 .netlify
+
+**/.yarn/*
+!**/.yarn/releases
+!**/.yarn/plugins
